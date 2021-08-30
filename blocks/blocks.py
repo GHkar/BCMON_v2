@@ -45,7 +45,7 @@ def dbSaveAndClose():
 
 # load block height
 def loadNowHeight():
-    f = open("height.txt","r")
+    f = open("/collectData/blocks/height.txt","r")
     height = int(f.readline().rstrip())
     f.close()
 
@@ -53,7 +53,7 @@ def loadNowHeight():
 
 
 def saveNowHeight(height):
-    f = open("height.txt", "r+")
+    f = open("/collectData/blocks/height.txt", "r+")
     f.write(str(height))
     f.close()
 
@@ -80,7 +80,7 @@ def collectData():
             break
 
     saveNowHeight(height)
-    print("save complete! best height = " + str(height))
+    print("blocks : save complete! best height = " + str(height))
 
 
 def excuteSQL(info):
