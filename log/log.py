@@ -108,6 +108,6 @@ def collectData(colletion):
 
 if __name__ == '__main__':
     collection = connect_monogoDB()
-    #collectData(collection)
+    collectData(collection)
 
     
