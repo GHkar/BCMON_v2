@@ -65,6 +65,7 @@ def collectData():
     
     # get best block height
     best_height = bitcoin_rpc.getblockcount()
+    
     while(height != best_height):
         
         try:
@@ -85,6 +86,8 @@ def collectData():
 
 def excuteSQL(info):
     global cur
+    
+
     sql = "INSERT INTO BBlock VALUES("+ str(info["height"]) + ",'" + str(info["hash"]) + "'," + str(info["time"]) + "," + str(info["size"]) + "," + str(info["strippedsize"]) + "," + str(info["weight"]) + "," + str(info["version"]) + ",'" + str(info["merkleroot"]) + "'," + str(info["nTx"]) + "," + str(info["mediantime"]) + "," + str(info["nonce"]) + ",'" + str(info["bits"]) + "'," + str(info["difficulty"]) + ",'" + str(info["chainwork"]) + "','" + str(info["previousblockhash"]) + "','" + str(info["nextblockhash"]) + "')"
     cur.execute(sql)
 

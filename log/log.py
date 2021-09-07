@@ -41,17 +41,14 @@ def load_nowPos():
 # if there are no documents in collection, than init pos to zero(0)
 def reset_nowPos(collection):
     if collection.estimated_document_count() == 0:      # counting number of document in collection
-        f = open("/collectData/log/nowPos.txt", "r+")
+        f = open("/collectData/log/nowPos.txt", "w+")
         f.write("0\n")
         f.write("1")
         f.close()
 
 # printing result
 def print_result(count):
-    if count == 1:
-        print("log : All data has been entered into the DB.")
-    elif count > 1 :
-        print("log : Total " + str(count) + ", saved at DB.")
+        print("log : Total " + str(count-1) + ", saved at DB.")
 
 # change type string to datetime
 def change_dateTime(date, time):
@@ -72,8 +69,7 @@ def collectData(colletion):
     f = open("/root/.bitcoin/debug.log", "r") # open log file
     readPos, count = load_nowPos()
     
-
-    if readPos == 0:
+    if count == 1:
         f.seek(5)  # general open log file, ommit first space
     else:
         f.seek(readPos)     # already open it, move pos
@@ -92,13 +88,13 @@ def collectData(colletion):
             findtime = pattern_time.search(line)
             dt = change_dateTime(findtime.group('date'), findtime.group('time'))
             
-            count = count + 1
 
             json['_id'] = count
             json['datetime'] = dt
             json['log'] = line
 
-            save_mongo_db(collection, json)
+            save_mongo_db(collection, json) 
+            count = count + 1
 
         except Exception as ex:
             print("err : " + str(ex))
@@ -112,6 +108,6 @@ def collectData(colletion):
 
 if __name__ == '__main__':
     collection = connect_monogoDB()
-    collectData(collection)
+    #collectData(collection)
 
     
