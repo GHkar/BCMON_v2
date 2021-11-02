@@ -151,11 +151,11 @@ def executeSQL_tx(info, txindex, blockheight, blockhash, blocktime):
     except Exception as ex:
         if 'Duplicate' in str(ex):
             print("Duplicate TX : " + str(info["txid"]) + ", Block : " + str(blockhash))
-            sql = "DELETE FROM BVin WHERE TransactionID='" + str(info["txid"]) + "'"
+            sql = "DELETE FROM BVin2 WHERE TransactionID='" + str(info["txid"]) + "'"
 
             cur.execute(sql)
 
-            sql = "DELETE FROM BVout WHERE TransactionID='" + str(info["txid"]) + "'"
+            sql = "DELETE FROM BVout2 WHERE TransactionID='" + str(info["txid"]) + "'"
 
             cur.execute(sql)
 
