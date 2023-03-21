@@ -11,6 +11,7 @@ Full Client Node를 통해 비트코인과 이더리움의 블록, 로그, 트�
 <pre>
 <code>
 docker pull dofl0119/bitcoinagent_bcmonv2
+docker pull dofl0119/ethereum_bcmonv2
 </code>
 </pre>
 
